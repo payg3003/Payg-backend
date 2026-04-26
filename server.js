@@ -11,6 +11,8 @@ const subscriptionRoutes = require('./routes/subscription')
 const paymentRoutes      = require('./routes/payments')
 const claimRoutes        = require('./routes/claims')
 const notificationRoutes = require('./routes/notifications')
+const ussdRoutes         = require('./routes/ussd')         // ← NEW
+const airtimeRoutes      = require('./routes/airtime')      // ← NEW
 
 const app = express()
 
@@ -52,6 +54,8 @@ app.get('/health', (req, res) => {
 })
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
+app.use('/api/ussd',          ussdRoutes)         // ← NEW (no auth — AT posts here)
+app.use('/api/airtime',       airtimeRoutes)      // ← NEW
 app.use('/api/auth',          authRoutes)
 app.use('/api/subscription',  subscriptionRoutes)
 app.use('/api/payments',      paymentRoutes)
